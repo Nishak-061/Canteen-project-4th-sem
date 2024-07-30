@@ -42,24 +42,28 @@ const Header = () => {
               <MdRestaurant />
               Canteen Food
             </Link>
-            <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+            <ul className="navbar-nav ms-auto mb-2 mb-lg-1">
               <SearchInput />
               <li className="nav-item">
-                <NavLink to="/" className="nav-link">
+                <NavLink to="/" className="nav-link mx-2" style={{ backgroundColor: 'inherit', borderRadius: '20px' }}  onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#FFAAAA'}
+                      onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'inherit'}>
                   Home
                 </NavLink>
               </li>
               <li className="nav-item dropdown">
                 <Link
-                  className="nav-link dropdown-toggle"
+                  className="nav-link dropdown-toggle mx-1"
                   to={"/categories"}
                   data-bs-toggle="dropdown"
+                  style={{ backgroundColor: 'inherit', borderRadius: '20px' }}  onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#FFAAAA'}
+                      onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'inherit'}
                 >
                   categories
                 </Link>
-                <ul className="dropdown-menu">
+                <ul className="dropdown-menu" >
                   <li>
-                    <Link className="dropdown-item" to={"/categories"}>
+                    <Link className="dropdown-item" to={"/categories"} style={{ backgroundColor: 'inherit', borderRadius: '20px' }}  onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#FFAAAA'}
+                      onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'inherit'}>
                       All Categories
                     </Link>
                   </li>
@@ -68,6 +72,8 @@ const Header = () => {
                       <Link
                         className="dropdown-item"
                         to={`/category/${c.slug}`}
+                        style={{ backgroundColor: 'inherit', borderRadius: '20px' }}  onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#FFAAAA'}
+                      onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'inherit'}
                       >
                         {c.name}
                       </Link>
@@ -79,12 +85,14 @@ const Header = () => {
               {!auth.user ? (
                 <>
                   <li className="nav-item">
-                    <NavLink to="/register" className="nav-link">
+                    <NavLink to="/register" className="nav-link" style={{ backgroundColor: 'inherit', borderRadius: '20px' }}  onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#FFAAAA'}
+                      onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'inherit'}>
                       Register
                     </NavLink>
                   </li>
                   <li className="nav-item">
-                    <NavLink to="/login" className="nav-link">
+                    <NavLink to="/login" className="nav-link" style={{ backgroundColor: 'inherit', borderRadius: '20px' }}  onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#FFAAAA'}
+                      onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'inherit'}>
                       Login
                     </NavLink>
                   </li>
@@ -98,16 +106,20 @@ const Header = () => {
                       role="button"
                       data-bs-toggle="dropdown"
                       aria-expanded="false"
+                      style={{ backgroundColor: 'inherit', borderRadius: '20px' }}  onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#FFAAAA'}
+                      onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'inherit'}
                     >
                       {auth?.user?.name}
                     </NavLink>
                     <ul className="dropdown-menu">
                       <li>
                         <NavLink
-                          to={`${config.API_BASE_URL}/dashboard/${
+                          to={`/dashboard/${
                             auth?.user?.role === 1 ? "admin" : "user"
                           }`}
                           className="dropdown-item"
+                          style={{ backgroundColor: 'inherit', borderRadius: '20px' }}  onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#FFAAAA'}
+                      onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'inherit'}
                         >
                           Dashboard
                         </NavLink>
@@ -117,6 +129,8 @@ const Header = () => {
                           onClick={handleLogout}
                           to="/login"
                           className="dropdown-item"
+                          style={{ backgroundColor: 'inherit', borderRadius: '20px' }}  onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#FFAAAA'}
+                      onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'inherit'}
                         >
                           Logout
                         </NavLink>
@@ -127,7 +141,8 @@ const Header = () => {
               )}
               <li className="nav-item">
                 <Badge count={cart?.length} showZero>
-                  <NavLink to="/cart" className="nav-link">
+                  <NavLink to="/cart" className="nav-link mx-2" style={{ backgroundColor: 'inherit', borderRadius: '20px' }}  onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#FFAAAA'}
+                      onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'inherit'}>
                     Cart
                   </NavLink>
                 </Badge>

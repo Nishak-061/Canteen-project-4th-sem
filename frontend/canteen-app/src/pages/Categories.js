@@ -25,9 +25,10 @@ const Categories = () => {
                     <i className="fa fa-hamburger text-warning"></i>
                     {c.name}
                   </h5>
-                  <Link to={`${config.API_BASE_URL}/category/${c.slug}`} className="btn btn-danger">
+                  <Link to={`/category/${c.slug}`} className="btn btn-danger">
                     View Category
                   </Link>
+                    
                 </div>
               </div>
             </div>

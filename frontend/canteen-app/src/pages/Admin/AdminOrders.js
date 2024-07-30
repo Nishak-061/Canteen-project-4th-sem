@@ -5,16 +5,31 @@ import AdminMenu from "../../components/Layout/AdminMenu";
 import Layout from "../../components/Layout/Layout";
 import { useAuth } from "../../context/auth";
 import moment from "moment";
-
 import { Select } from "antd";
 import config from "../../config";
+
+
 const { Option } = Select;
+
+const calculateTotalPrice = (products) => {
+  try {
+    let total = products?.reduce((acc, item) => acc + item.price, 0);
+    return total.toLocaleString("en-IN", {
+      style: "currency",
+      currency: "INR",
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+
 const AdminOrders = () => {
   const [status, setStatus] = useState([
     "Not Process",
     "Processing",
     "Shipped",
-    "deliverd",
+    "delivered",
     "cancel",
   ]);
   const [changeStatus, setChangeStatus] = useState("");
@@ -45,15 +60,15 @@ const AdminOrders = () => {
   };
   return (
     <Layout title={"All Orders Data"}>
-      <div className="row">
+      <div className="row" style={{ backgroundColor: '#FAE8E0' }}>
         <div className="col-md-3">
           <AdminMenu />
         </div>
-        <div className="col-md-9">
+        <div className="col-md-8">
           <h1 className="text-center">All Orders</h1>
           {orders?.map((o, i) => {
             return (
-              <div className="border shadow">
+              <div className="border border-dark shadow mb-4">
                 <table className="table">
                   <thead>
                     <tr>
@@ -61,6 +76,7 @@ const AdminOrders = () => {
                       <th scope="col">Status</th>
                       <th scope="col">Buyer</th>
                       <th scope="col">Date</th>
+                      <th scope="col">Amount</th>
                       <th scope="col">Payment</th>
                       <th scope="col">Quantity</th>
                     </tr>
@@ -82,7 +98,8 @@ const AdminOrders = () => {
                         </Select>
                       </td>
                       <td>{o?.buyer?.name}</td>
-                      <td>{moment(o?.createAt).fromNow()}</td>
+                      <td>{moment(o?.createdAt).format('MMMM Do YYYY, h:mm:ss a')}</td>
+                      <td>{calculateTotalPrice(o?.products)}</td>
                       <td>{o?.payment.success ? "Success" : "Failed"}</td>
                       <td>{o?.products?.length}</td>
                     </tr>
@@ -90,7 +107,7 @@ const AdminOrders = () => {
                 </table>
                 <div className="container">
                   {o?.products?.map((p, i) => (
-                    <div className="row mb-2 p-6 card flex-row">
+                    <div className="row mb-2 p-3 card flex-row">
                       <div className="col-md-3">
                         <img
                           src={`${config.API_BASE_URL}/api/v1/product/product-photo/${p._id}`}

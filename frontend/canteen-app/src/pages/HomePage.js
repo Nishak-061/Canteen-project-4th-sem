@@ -10,6 +10,7 @@ import HomeBootstrap from "./user/HomeBootstrap";
 import useFetchData from "../hooks/useFetchData";
 import config from "../config";
 
+
 const HomePage = () => {
   const navigate = useNavigate();
   const [cart, setCart] = useCart();
@@ -20,6 +21,11 @@ const HomePage = () => {
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
+
+
+
+
+
 
   //get all cat
   const getAllCategory = async () => {
